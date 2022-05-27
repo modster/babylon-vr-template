@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Babylon.js sample code</title>
 
     <!-- Babylon.js -->
@@ -38,13 +38,15 @@
             touch-action: none;
         }
     </style>
+
 </head>
 
 <body>
+
     <canvas id="renderCanvas"></canvas>
+
     <script>
         var canvas = document.getElementById("renderCanvas");
-
         var startRenderLoop = function (engine, canvas) {
             engine.runRenderLoop(function () {
                 if (sceneToRender && sceneToRender.activeCamera) {
@@ -57,6 +59,7 @@
         var scene = null;
         var sceneToRender = null;
         var createDefaultEngine = function () { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
+
         var createScene = function () {
             var scene = new BABYLON.Scene(engine);
             var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 3, BABYLON.Vector3.Zero(), scene);
@@ -74,24 +77,18 @@
             skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
             skybox.material = skyboxMaterial;
 
-
             BABYLON.SceneLoader.Append("./", "models/human.obj", scene, function (scene) {
                 //Light direction is up and left
                 var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
                 light.specular = new BABYLON.Color3(0, 1, 0);
-
             });
 
-
             // var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 4, height: 4 }, scene);
-
             return scene;
-
         };
+
         window.initFunction = async function () {
-
-
             var asyncEngineCreation = async function () {
                 try {
                     return createDefaultEngine();
@@ -106,6 +103,7 @@
             startRenderLoop(engine, canvas);
             window.scene = createScene();
         };
+
         initFunction().then(() => {
             sceneToRender = scene
         });
@@ -114,7 +112,9 @@
         window.addEventListener("resize", function () {
             engine.resize();
         });
+
     </script>
+
 </body>
 
 </html>
