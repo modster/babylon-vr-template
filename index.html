@@ -80,25 +80,11 @@
                 var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
                 light.specular = new BABYLON.Color3(0, 1, 0);
-                light.groundColor = new BABYLON.Color3(0, 1, 0);
-
 
             });
 
-            // // Sphere
-            // var shape = BABYLON.MeshBuilder.CreateSphere("shape", {}, scene);
-            // var shapeMaterial = new BABYLON.StandardMaterial("mat", scene);
-            // shapeMaterial.backFaceCulling = true;
-            // shapeMaterial.reflectionTexture = new BABYLON.Texture("textures/hfleQSi.jpg", scene);
-            // shapeMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.PLANAR_MODE;
-            // shapeMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-            // shapeMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-            // shape.material = shapeMaterial;
 
-            // shape.rotation.y = Math.PI / 8;
-            // shape.rotation.x = -Math.PI / 8;
-
-            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 4, height: 4 }, scene);
+            // var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 4, height: 4 }, scene);
 
             return scene;
 
