@@ -41,6 +41,7 @@
     <canvas id="renderCanvas"></canvas>
     <script>
         var canvas = document.getElementById("renderCanvas");
+
         var startRenderLoop = function (engine, canvas) {
             engine.runRenderLoop(function () {
                 if (sceneToRender && sceneToRender.activeCamera) {
@@ -48,6 +49,7 @@
                 }
             });
         }
+
         var engine = null;
         var scene = null;
         var sceneToRender = null;
