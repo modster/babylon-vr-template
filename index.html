@@ -2,10 +2,8 @@
 <html>
 
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Babylon.js sample code</title>
-
     <!-- Babylon.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
     <script src="https://assets.babylonjs.com/generated/Assets.js"></script>
@@ -21,7 +19,6 @@
     <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
     <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
     <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
-
     <style>
         html,
         body {
@@ -38,13 +35,10 @@
             touch-action: none;
         }
     </style>
-
 </head>
 
 <body>
-
     <canvas id="renderCanvas"></canvas>
-
     <script>
         var canvas = document.getElementById("renderCanvas");
         var startRenderLoop = function (engine, canvas) {
@@ -54,17 +48,14 @@
                 }
             });
         }
-
         var engine = null;
         var scene = null;
         var sceneToRender = null;
         var createDefaultEngine = function () { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
-
         var createScene = function () {
             var scene = new BABYLON.Scene(engine);
             var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 3, BABYLON.Vector3.Zero(), scene);
             camera.attachControl(canvas, true);
-
             // Skybox
             var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 1000.0 }, scene);
             var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
@@ -76,18 +67,15 @@
             skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
             skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
             skybox.material = skyboxMaterial;
-
             BABYLON.SceneLoader.Append("./", "models/human.obj", scene, function (scene) {
-                //Light direction is up and left
+                //Light direction is up and left:
                 var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
                 light.specular = new BABYLON.Color3(0, 1, 0);
             });
-
-            // var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 4, height: 4 }, scene);
+            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 400, height: 400 }, scene);
             return scene;
         };
-
         window.initFunction = async function () {
             var asyncEngineCreation = async function () {
                 try {
@@ -97,24 +85,19 @@
                     return createDefaultEngine();
                 }
             }
-
             window.engine = await asyncEngineCreation();
             if (!engine) throw 'engine should not be null.';
             startRenderLoop(engine, canvas);
             window.scene = createScene();
         };
-
         initFunction().then(() => {
             sceneToRender = scene
         });
-
         // Resize
         window.addEventListener("resize", function () {
             engine.resize();
         });
-
     </script>
-
 </body>
 
 </html>
