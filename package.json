@@ -4,7 +4,7 @@
   "description": "A template for creating VR projects with Babylon.js. Loads a model in a VR scene and provides a simple UI for controlling the model. Loads Babylonjs modules via CDN.",
   "main": "index.html",
   "scripts": {
-    "dev": "http-server -p 8080"
+    "start": "http-server -p 8080"
   },
   "repository": {
     "type": "git",
