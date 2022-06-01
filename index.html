@@ -69,14 +69,14 @@
             skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
             skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
             skybox.material = skyboxMaterial;
-            BABYLON.SceneLoader.Append("./", "models/human.obj", human.mtl, scene, function (scene) {
+            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 400, height: 400 }, scene);
+
+            BABYLON.SceneLoader.Append("./", "models/human.obj", "models/human.mtl", scene, function (scene) {
                 //Light direction is up and left:
                 var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
                 light.specular = new BABYLON.Color3(0, 1, 0);
             });
-
-            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 400, height: 400 }, scene);
 
 
             // XR
