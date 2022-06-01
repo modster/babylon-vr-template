@@ -75,16 +75,9 @@
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
                 light.specular = new BABYLON.Color3(0, 1, 0);
             });
-            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 400, height: 400 }, scene);
-
-            // XR
-            const xrHelper = await scene.createDefaultXRExperienceAsync({
-                floorMeshes: [environment.ground]
-            });
-
+            // var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 400, height: 400 }, scene);
             return scene;
         };
-
         window.initFunction = async function () {
             var asyncEngineCreation = async function () {
                 try {
