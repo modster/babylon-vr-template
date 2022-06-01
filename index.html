@@ -69,7 +69,7 @@
             skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
             skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
             skybox.material = skyboxMaterial;
-            BABYLON.SceneLoader.Append("./", "models/human.obj", scene, function (scene) {
+            BABYLON.SceneLoader.Append("./", "models/human.obj", human.mtl, scene, function (scene) {
                 //Light direction is up and left:
                 var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
                 light.diffuse = new BABYLON.Color3(1, 0, 0);
