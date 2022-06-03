@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>Babylon.js sample code</title>
+    <title>WebXR Using Babylon.js</title>
 
-    <!-- Babylon.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
     <script src="https://assets.babylonjs.com/generated/Assets.js"></script>
     <script src="https://preview.babylonjs.com/ammo.js"></script>
@@ -19,34 +17,24 @@
     <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
     <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylon.glTFFileLoader.js"></script>
-
     <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
     <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
     <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
-
-    <style>
-        html,
-        body {
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #renderCanvas {
-            width: 100%;
-            height: 100%;
-            touch-action: none;
-        }
-    </style>
+    <link href='style.css' rel='stylesheet' />
 </head>
-
 <body>
-    <canvas id="renderCanvas"></canvas>
-    <script>
-        var canvas = document.getElementById("renderCanvas");
 
+    <header id="header">
+        <span><a href="https://github.com/modster/babylon-vr-template/">modster/babylon-vr-template</a></span>
+    </header>
+
+    <canvas id="renderCanvas"></canvas>
+
+    <script>
+
+        // Store a reference to the canvas
+        var canvas = document.getElementById("renderCanvas");
+        // A function to bind the Engine to the Canvas and render the scene
         var startRenderLoop = function (engine, canvas) {
             engine.runRenderLoop(function () {
                 if (sceneToRender && sceneToRender.activeCamera) {
@@ -55,12 +43,18 @@
             });
         }
 
+        // Variables declaration
         var engine = null;
         var scene = null;
         var sceneToRender = null;
+
+        // Obtain a WebGL2 context fron the Canvas Api if available
         var createDefaultEngine = function () { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true, disableWebGL2Support: false }); };
-        // var createScene = function () {
+
+        // Create the scene asyncronously
         function delayCreateScene() {
+
+            // Construct a Babylon.js engine
             var scene = new BABYLON.Scene(engine);
             engine.enableOfflineSupport = false;
             engine.setHardwareScalingLevel(1);
@@ -85,13 +79,13 @@
                 // XR
                 const xrHelper = scene.createDefaultXRExperienceAsync({
                 });
-            });
 
+            });
             return scene;
         };
+
+        // Function to initialize the Engine and Scene within the Window context
         window.initFunction = async function () {
-
-
             var asyncEngineCreation = async function () {
                 try {
                     return createDefaultEngine();
@@ -106,16 +100,19 @@
             startRenderLoop(engine, canvas);
             window.scene = delayCreateScene();
         };
+
+        // Function that passes the scene to the renderer when delayCreateScene() is done loading assets
         initFunction().then(() => {
             sceneToRender = scene
         });
 
-        // Resize
+        // Resize the canvas if the window changes size. Very important for XR.
         window.addEventListener("resize", function () {
             engine.resize();
         });
 
     </script>
+
 </body>
 
 </html>

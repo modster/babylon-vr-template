@@ -2,19 +2,19 @@
   "name": "babylon-vr",
   "version": "1.0.0",
   "description": "A template for creating VR projects with Babylon.js. Loads a model in a VR scene and provides a simple UI for controlling the model. Loads Babylonjs modules via CDN.",
-  "main": "index.html",
-  "scripts": {
-    "start": "http-server -p 8080"
-  },
+  "keywords": ["babylonjs", "vr", "xr", "webxr", "webgl", "gh-pages", "template"],
+  "author": "E.M. Greeff <emgreeff@datadrivendashboards.com>",
+  "homepage": "https://greeffer.com/babylon-vr",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/modster/babylon-vr.git"
   },
-  "keywords": [],
-  "author": "E.M. Greeff <emgreeff@datadrivendashboards.com>",
   "license": "MIT",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080"
+  },
   "bugs": {
     "url": "https://github.com/modster/babylon-vr/issues"
-  },
-  "homepage": "https://github.com/modster/babylon-vr#readme"
+  }
 }
